@@ -3,26 +3,62 @@ import './App.css';
 
 function App() {
 
-  const userLogged = "RifqiS"
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="ParentBox">
+      <ProdukFoto/>
+      <ProdukInfo discount="coming" kategori="Futsal" name="Speecs"/>
     </div>
   );
 }
 
+function ProdukFoto() {
+
+  return (
+    <div>
+      <div className="Foto">
+        <img src="fotosneaker.jpg"></img>
+      </div>
+    </div>
+  );
+}
+
+function CheckDiscount(props) {
+  const { cekdiscount } = props;
+  if (cekdiscount == "yes") {
+    return(
+      <p>Diskon 50% Off</p>
+    );
+  }
+  else if(cekdiscount == "coming"){
+    return(
+      <p>Akan ada diskon</p>
+    );
+  }
+  else{
+    return(
+      <p>Belum Ada diskon</p>
+    );
+  }
+}
+
+function ProdukInfo(props) {
+  const {kategori, name, discount} = props;
+
+  return (
+    <div>
+      <div className="Deskripsi">
+        <p className="Kategori">{kategori}</p>
+        <h1 className="Judul">{name}</h1>
+        <p className="Harga">720.000</p>
+        <CheckDiscount cekdiscount={discount}/>
+        <p className="Info">lorem insum</p>
+        <a onClick={(e) => TambahCart(name, e)} href="#">Add to Cart</a>
+      </div>
+    </div>
+  );
+}
+
+function TambahCart(e) {
+  return console.log("Membeli produk "+e);
+}
 export default App;
